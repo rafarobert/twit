@@ -1,4 +1,4 @@
-import {Injectable} from "@angular/core";
+import {ElementRef, Injectable, ViewChild} from "@angular/core";
 import {Router} from "@angular/router";
 
 import * as firebase from "firebase";
@@ -19,8 +19,11 @@ interface User {
 @Injectable()
 
 export class AuthService {
-    user: Observable<User>;
 
+    user: Observable<User>;
+    auth:object;
+    email: string;
+    password: string;
 
     constructor(private afAuth: AngularFireAuth,
                 private afs: AngularFirestore,
@@ -38,6 +41,7 @@ export class AuthService {
     }
 
     signUp(email: string, password: string){
+
         this.afAuth
             .auth
             .createUserAndRetrieveDataWithEmailAndPassword(email, password)
@@ -52,6 +56,8 @@ export class AuthService {
     }
 
     login(email: string, password: string){
+
+        console.log(email);
         this.afAuth
             .auth
             .signInAndRetrieveDataWithEmailAndPassword(email, password)

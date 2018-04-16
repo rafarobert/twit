@@ -12,10 +12,10 @@ import {AuthGuard} from "./core/auth.guard";
 import {UserProfileComponent} from "./user-profile/user-profile.component";
 
 const appRoutes: Routes = [
-    {path: '', component: LoginComponent, canActivate: [AuthGuard] },
+    {path: '', component: HomeComponent, canActivate: [AuthGuard] },
     {path: 'login', component: LoginComponent },
     {path: 'home', component:HomeComponent},
-    {path: 'perfil', component:UserProfileComponent, canActivate: [AuthGuard] },
+    {path: 'users/:id', component:UserProfileComponent, canActivate: [AuthGuard] },
     {path: 'posts', component:PostListComponent,canActivate: [AuthGuard] },
     {path: 'posts/nuevo', component:PostNewComponent, canActivate: [AuthGuard] },
     {path: 'posts/:id', component:PostDetailComponent, canActivate: [AuthGuard] },

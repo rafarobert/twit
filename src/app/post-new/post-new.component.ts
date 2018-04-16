@@ -23,6 +23,7 @@ export class PostNewComponent implements OnInit {
     titulo: string;
     contenido: string;
 
+
     constructor(private  afs: AngularFirestore, private _router: Router) {
     }
 

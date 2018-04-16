@@ -39,5 +39,9 @@ export class PostDetailComponent implements OnInit {
 
     ngOnInit() {
     }
-
+    getPost(postId) {
+        console.log(postId);
+        this.postDoc = this.afs.doc('posts/'+postId);
+        this.singlePost = this.postDoc.valueChanges();
+    }
 }

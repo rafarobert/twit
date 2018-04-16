@@ -10,6 +10,7 @@ import {AuthService} from "../core/auth.service";
 export class LoginComponent implements OnInit {
     @ViewChild("txtEmail", {read: ElementRef}) txtEmail: ElementRef;
     @ViewChild("txtPassword", {read: ElementRef}) txtPassword: ElementRef;
+    @ViewChild("btnEmail", {read: ElementRef}) btnEmail: ElementRef;
 
     public titulo: string;
     email: string;

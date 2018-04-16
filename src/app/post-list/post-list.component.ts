@@ -63,5 +63,7 @@ export class PostListComponent implements OnInit {
         this.singlePost = this.postDoc.valueChanges();
     }
 
+    comentar(postId){
 
+    }
 }

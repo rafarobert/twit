@@ -15,14 +15,14 @@
                 <li class="nav-item float-right">
                     <a id="btnNewPost" class="btn btn-success" href="posts/nuevo">Nuevo Post</a>
                 </li>
-                <li id="btnPerfil" class="nav-item dropdown float-right">
+                <li #btnPerfil class="nav-item dropdown float-right d-none">
                     <a #btnEmail class="nav-link dropdown-toggle" href="#"
-                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{user.email}}</a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="#">Mi perfil</a>
+                        <a class="dropdown-item" href="users/{{user.uid}}" (click)="getUser(user.uid)">Mi perfil</a>
                         <a class="dropdown-item" href="#">Mis Posts</a>
                         <a class="dropdown-item" href="#">Mis Favoritos</a>
-                        <a class="dropdown-item" href="#" #btnLogout (click)="logout()">Logout</a>
+                        <a class="dropdown-item" href="#" #btnLogout (click)="authService.logout()">Logout</a>
                     </div>
                 </li>
             </ul>
