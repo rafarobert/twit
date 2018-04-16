@@ -1,0 +1,31 @@
+<div class="col-md-12">
+
+    <div id="twitLogin" class="form-signin">
+        <h2 for="formContent" class="form-signin-heading">{{titulo}}</h2>
+        <div id="alerMessage" class="alert alert-warning d-none" role="alert"></div>
+        <div id="formContent" class="card-body">
+
+            <div class="form-group">
+                <label for="txtEmail">Email address</label>
+                <input type="email" id="txtEmail" class="form-control" aria-describedby="emailHelp" #txtEmail
+                       placeholder="Enter email">
+                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.
+                </small>
+            </div>
+            <div class="form-group">
+                <label for="txtPassword">Password</label>
+                <input id="txtPassword" type="password" class="form-control" id="exampleInputPassword1" #txtPassword
+                       placeholder="Password">
+            </div>
+            <div class="form-group text-center">
+                <button (click)="authService.googleLogin()">
+                    <i class="fa fa-google"></i> Usar una cuenta de Google
+                </button>
+            </div>
+            <div class="form-group text-center">
+                <button id="btnLogin" type="submit" (click)="login()" class="btn btn-primary">Ingresar</button>
+                <button id="btnSignUp" type="submit" (click)="signUp()" class="btn btn-primary">Registrarse</button>
+            </div>
+        </div>
+    </div>
+</div>
