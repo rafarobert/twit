@@ -4,6 +4,8 @@ import {Observable} from "rxjs/Observable";
 import {ActivatedRoute} from "@angular/router";
 
 import 'rxjs/add/operator/map';
+import {AngularFireAuth} from "angularfire2/auth";
+import {AuthService} from "../core/auth.service";
 
 interface Post {
     titulo: string;
@@ -26,15 +28,30 @@ export class PostDetailComponent implements OnInit {
     singlePost: Observable<Post>;
     postId:string;
 
+    userId:string;
+    userName:string;
+    userEmail:string;
+
     constructor(
         route: ActivatedRoute,
-        private  afs: AngularFirestore
+        private  afs: AngularFirestore,
+        public afAuth: AngularFireAuth,
+        public authService: AuthService
     ) {
         route.paramMap.subscribe(
-            params => this.postId = params.get('id')
+            params => this.postId = params.get('postId')
         );
+
         this.postDoc = this.afs.doc('posts/'+this.postId);
         this.singlePost = this.postDoc.valueChanges();
+
+        this.afAuth.authState.subscribe(user => {
+            if(user){
+                this.userId = user.uid;
+                this.userEmail = user.email;
+                this.userName = user.displayName;
+            }
+        });
     }
 
     ngOnInit() {

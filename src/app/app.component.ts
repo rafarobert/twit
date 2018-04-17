@@ -37,6 +37,8 @@ export class AppComponent implements OnInit{
     userDoc: AngularFirestoreDocument<User>;
     singleUser: Observable<User>;
     userId:string;
+    userEmail:string;
+    userName:string;
     user:object;
 
     constructor(
@@ -51,13 +53,21 @@ export class AppComponent implements OnInit{
         this.userDoc = this.afs.doc('users/'+this.userId);
         this.singleUser = this.userDoc.valueChanges();
         this.user = this.singleUser;
+
+        this.afAuth.authState.subscribe(user => {
+            if(user){
+                this.userId = user.uid;
+                this.userEmail = user.email;
+                this.userName = user.displayName;
+            }
+        });
     }
 
     ngOnInit(){
         this.auth = this.afAuth;
         this.afAuth.auth.onAuthStateChanged((user) => {
             this.user = user;
-            console.log(user);
+
             if (user) {
                 this.btnPerfil.nativeElement.classList.remove('d-none');
                 //this.btnEmail.nativeElement.innerHTML = user.email

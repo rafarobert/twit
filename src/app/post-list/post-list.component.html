@@ -5,27 +5,41 @@
                 <li class="list-inline">
                     <div class="card">
                         <div class="card-header">
-                            Featured
+                            {{post.email}}
                         </div>
                         <div class="card-body">
                             <h5 class="card-title">
-                                <a href="posts/{{post.id}}" (click)="getPost(post.id)">
+                                <a href="posts/{{post.data.id}}" (click)="getPost(post.data.id)">
                                     <strong>{{ post.data.titulo}}</strong>
                                 </a>
                             </h5>
-                            <p class="card-text">
+                            <div class="card-text">
                                 {{post.data.contenido}}
                                 <br>
                                 <a href="#" class="">Leer Mas</a>
-                            </p>
-                            <button class="btn btn-primary" (click)="comentar()">Comentar</button>
-                            <div class="form-group d-none">
+                                <br>
+                                <div class="card-body">
+                                    <ul *ngFor="let comment of post.data.comentarios">
+                                        <li class="list-inline">
+                                            {{comment}}
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!--<button class="btn btn-primary" (click)="showBoxComentar()">Comentar</button>-->
+                            <div class="form-group" #boxComment>
                                 <div class="form-group">
-                                    <label for="exampleFormControlTextarea1">Deja tu twit</label>
-                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" [(ngModel)]="titulo"
+                                    <label for="exampleFormControlTextarea1">Deja tu comentario</label>
+                                    <input type="text" class="form-control" id="exampleFormControlInput1" [(ngModel)]="commentTitle" name="titulo"
+                                           placeholder="Introduce un titulo">
+                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+                                              [(ngModel)]="commentContent"
                                               name="titulo" placeholder="Introduce un cimentario"></textarea>
                                 </div>
-                                <input class="btn btn-primary" type="submit" value="Add a Post" (click)="addPost()">
+                                <input class="btn btn-primary" type="submit" value="Agrega un comentario"
+                                       (click)="addComment(post.id, userId, userEmail)">
+                                <button class="btn btn-primary" (click)="doFollowing(userId,userEmail,userName)">Seguir</button>
+                                <!--<button class="btn btn-primary" (click)="hideBoxComentar()">ocultar</button>-->
                             </div>
                         </div>
                     </div>

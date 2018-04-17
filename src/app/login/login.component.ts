@@ -1,5 +1,8 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {AuthService} from "../core/auth.service";
+import {AngularFirestore} from "angularfire2/firestore";
+import {ActivatedRoute} from "@angular/router";
+import {AngularFireAuth} from "angularfire2/auth";
 
 @Component({
   selector: 'login',
@@ -15,10 +18,22 @@ export class LoginComponent implements OnInit {
     public titulo: string;
     email: string;
     password: string;
+    userId:string;
 
+    constructor(
+        private  afs: AngularFirestore,
+        route: ActivatedRoute,
+        public afAuth: AngularFireAuth,
+        public authService: AuthService
 
-    constructor(public authService: AuthService){
+    ){
         this.titulo = 'Porfavor Ingresa o Registrate';
+        this.afAuth.authState.subscribe(user => {
+            if(user){
+                this.userId = user.uid;
+                this.email = user.email;
+            }
+        });
     }
 
     ngOnInit(){

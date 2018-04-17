@@ -97,7 +97,6 @@ export class AuthService {
             uid: user.uid,
             email: user.email,
             displayName: user.displayName,
-            posts: user.posts ? user.posts : {}
         }
 
         return userRef.set(data, { merge: true })

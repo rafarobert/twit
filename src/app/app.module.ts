@@ -25,6 +25,7 @@ import {ActivatedRouteSnapshot, RouterModule, RouterStateSnapshot} from "@angula
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import {AuthGuard} from "./core/auth.guard";
 import {CoreModule} from "./core/core.module";
+import { UserListComponent } from './user-list/user-list.component';
 
 
 // Paste in your credentials that you saved earlier
@@ -47,6 +48,7 @@ var firebaseConfig = {
       PostListComponent,
       PostNewComponent,
       UserProfileComponent,
+      UserListComponent,
   ],
   imports: [
       BrowserModule,
