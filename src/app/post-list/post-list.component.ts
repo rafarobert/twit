@@ -103,6 +103,7 @@ export class PostListComponent implements OnInit {
                     return { id, data};
                 });
             });
+
     }
 
     setComments(value) : any {
